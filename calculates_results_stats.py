@@ -52,24 +52,24 @@ def calculates_results_stats(results_dic):
         results_stats_dic['n_correct_notdogs'] = 0
         results_stats_dic['n_correct_breed'] = 0  
         
-        for filename in results_dic:
+        for filename in results_dic.values():
                 # Labels Match Exactly: pet image lable matches classifier label?
-                if results_dic[filename][2] == 1:
+                if filename[2] == 1:
                         results_stats_dic['n_match'] += 1
                 # Count how many pet images of dogs had their breed correctly classified:
                 # Is image a dog? and are pet image lable and classifier label matched?
-                if results_dic[filename][3] == 1 and results_dic[filename][2] == 1:
+                if filename[3] == 1 and filename[2] == 1:
                         results_stats_dic['n_correct_breed'] += 1
                 # Pet Image Label is a Dog - counts number of dog images
-                if results_dic[filename][3] == 1:
+                if filename[3] == 1:
                         results_stats_dic['n_dogs_img'] += 1
                         # Classifier classifies image as Dog (& pet image is a dog)
                         # Count number of correct dog classifications
-                        if results_dic[filename][4] == 1:
+                        if filename[4] == 1:
                                 results_stats_dic['n_correct_dogs'] += 1
                 # Pet Image Label is NOT a Dog
                 else:
-                        if results_dic[filename][4] == 0:
+                        if filename[4] == 0:
                                 results_stats_dic['n_correct_notdogs'] += 1
 
         # Calculate number of total images: The images in the dictionary
